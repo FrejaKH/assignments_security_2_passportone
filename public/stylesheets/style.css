@@ -1,0 +1,100 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+/* main layout grid with three rows, header main, and footer */
+body {
+    background: #eee;
+    color: #111;
+    font-family: sans-serif;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+    min-height: 100%;
+}
+/* three main layout elements are all grids themselves */
+header, main, footer {
+    display: grid;
+    outline: 0px solid red;
+    padding: .5rem;
+}
+
+h1 { font-size: 1.6rem; padding: .4rem; }
+h2 { font-size: 1.4rem; padding: .3rem; text-align: center; }
+h3 { font-size: 1.2rem; padding: .3rem; }
+h4 { font-size: 1.0rem; padding: .2rem; text-align: center; }
+
+/* ----------------- header -------------- */
+/* header layout two columns */
+header {
+    background: #111;
+    color: #eee;
+    grid-template-columns: auto auto;
+}
+header nav {
+    text-align: right;
+}
+/* header presentation */
+header nav ul {
+    list-style: none;
+    padding: .8rem 0 0;
+    text-align: right;
+}
+header nav ul li {
+    display: inline;
+    font-size: 1.2rem;
+    margin: 0;
+}
+header nav ul li:not(:last-child):after {
+  content: ' | ';
+  color: magenta;
+}
+header a {
+    color: #eee;
+    font-style: normal;
+    text-decoration: none;
+}
+header nav a {
+    font-variant: small-caps;
+}
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* footer layout two columns */
+footer {
+    background-color: #111;
+    color: #eee;
+    grid-template-columns: auto auto;
+}
+footer div {
+    color: #bbb;
+}
+footer div:last-child {
+    text-align: right;
+}
+/* footer presentation */
+footer div:last-child a {
+    color: inherit;
+}
+
+/* ----------------- main -------------- */
+main {
+    grid-template-columns: auto;
+}
+section, div {
+    padding: 1rem;
+}
+.frontpage { /* vertical centering, the best one */
+/* works in recent opera/chrome/ff without prefixes */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form div label {
+    border: 0px solid red;
+    display: inline-block;
+    text-align: right;
+    width: 10em;
+}

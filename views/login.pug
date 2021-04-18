@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    section
+        h1 Please #{title}
+        form(method='post' action='/users/login')
+            div
+                label LoginID
+                input(type='text' minlength='2' name='uid')
+            div
+                label Password
+                input(type='password' minlength='16' name='password')
+            div
+                label
+                input(type='submit', value='Send')
