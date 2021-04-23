@@ -23,8 +23,8 @@ exports.postRegister = function (req, res) {
         errors.push({ msg: 'Passwords do not match' });
     }
 
-    if (password.length < 16) {
-        errors.push({ msg: 'Password must be at least 16 characters' });
+    if (password.length < 32 ) {
+        errors.push({ msg: 'Password must be at least 32 characters' });
     }
 
     if (errors.length > 0) {
@@ -37,8 +37,9 @@ exports.postRegister = function (req, res) {
             passwordr
         });
     } else {
-        User.findOne({ email: email }).then( function (user) {
-            if (user) {
+        User.findOne({ uid: uid })
+            .then( function (user) {
+              if (user) {
                 errors.push({ msg: 'Email already exists' });
                 res.render('register', {
                     errors,

@@ -16,12 +16,17 @@ html
             ul
                 li
                     a(href='/') Home
-                li
-                    a(href='/users/login') Login
-                li
-                    a(href='/users/register') Register
-                li
-                    a(href='/users/logout') Logout
+                if !user
+                    li
+                        a(href='/users/login') Login
+                    li
+                        a(href='/users/register') Register
+                if user
+                    li
+                        a(href="/dashboard") Insiders
+
+                    li
+                        a(href='/users/logout') Logout
     main
         block content
     footer

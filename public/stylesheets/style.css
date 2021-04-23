@@ -36,6 +36,7 @@ header nav {
 }
 /* header presentation */
 header nav ul {
+    color: #eee;
     list-style: none;
     padding: .8rem 0 0;
     text-align: right;
@@ -50,7 +51,7 @@ header nav ul li:not(:last-child):after {
   color: magenta;
 }
 header a {
-    color: #eee;
+    color: inherit;
     font-style: normal;
     text-decoration: none;
 }

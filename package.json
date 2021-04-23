@@ -9,6 +9,7 @@
     "nonet": "DEBUG=passportOne:* NODE_ENV=development node ./bin/www"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",

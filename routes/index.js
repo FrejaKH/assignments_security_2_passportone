@@ -3,8 +3,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    let user = req.user ? req.user.uid : null;
     res.render('index', {
-        title: 'Frontpage'
+        title: 'Frontpage',
+        user: user
     });
 });
 

@@ -4,11 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-/* from Traversy video */
+/* part I from Traversy video */
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
-const localStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 
 //const db = require('./config/keys').mongoURI;
@@ -19,7 +18,7 @@ mongoose.connect('mongodb://localhost/passportOne', {
     })
     .then( function() { console.log('mongoose connection open'); })
     .catch( function(err) { console.error(err); });
-/* end */
+/* end Traversy */
 
 
 var indexRouter = require('./routes/index');
@@ -38,7 +37,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-/* from Traversy Video */
+/* part II from Traversy Video */
 app.use(session(                        // setup session
     {
         secret: '998537qporhgpfangæ143+575?)(%lfjgaæ',  // footprints of the keyboard cat
@@ -49,6 +48,7 @@ app.use(session(                        // setup session
 // Passport middleware
 app.use(passport.initialize());         // init passport
 app.use(passport.session());            // connect passport and sessions
+require('./config/passport')(passport);
 
 // Connect flash
 app.use(flash());
@@ -60,7 +60,7 @@ app.use(function(req, res, next) {
   res.locals.error = req.flash('error');
   next();
 });
-/* end */
+/* end Traversy */
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

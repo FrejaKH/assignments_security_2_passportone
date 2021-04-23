@@ -3,13 +3,22 @@ extends layout
 block content
     section
         h1 Please #{title}
+        if errors != undefined && errors.length != 0
+            each error in errors
+                div(role='alert' id='a1') #{error.msg}
+        if success_msg != ''
+            div(role='alert' id='a2') #{success_msg}
+        if error_msg != ''
+            div(role='alert' id='a3') #{error_msg}
+        if error != ''
+            div(role='alert' id='a4') #{error}
         form(method='post' action='/users/login')
             div
                 label LoginID
                 input(type='text' minlength='2' name='uid')
             div
                 label Password
-                input(type='password' minlength='16' name='password')
+                input(type='password' minlength='32' name='password')
             div
                 label
                 input(type='submit', value='Send')
