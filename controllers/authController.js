@@ -40,7 +40,7 @@ exports.postRegister = function (req, res) {
         User.findOne({ uid: uid })
             .then( function (user) {
               if (user) {
-                errors.push({ msg: 'Email already exists' });
+                errors.push({ msg: 'User already registered' });
                 res.render('register', {
                     errors,
                     name,
