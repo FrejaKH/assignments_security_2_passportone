@@ -11,23 +11,20 @@ exports.register = function (req, res) {
     });
 };
 
-exports.postRegister = function (req, res) {
+exports.postRegister = async function (req, res) {
     let { name, uid, email, password, passwordr } = req.body;
     let errors = [];
 
     if (!name || !uid || !email || !password || !passwordr) {
         errors.push({ msg: 'Please enter all fields' });
     }
-
     if (password != passwordr) {
         errors.push({ msg: 'Passwords do not match' });
     }
-
-    if (password.length < 32 ) {
+    if (password.length < 32) {
         errors.push({ msg: 'Password must be at least 32 characters' });
     }
-
-    if (errors.length > 0) {
+    if (errors.length > 0) {            // respond if errors
         res.render('register', {
             errors,
             name,
@@ -36,45 +33,28 @@ exports.postRegister = function (req, res) {
             password,
             passwordr
         });
-    } else {
-        User.findOne({ uid: uid })
-            .then( function (user) {
-              if (user) {
-                errors.push({ msg: 'User already registered' });
-                res.render('register', {
-                    errors,
-                    name,
-                    uid,
-                    email,
-                    password,
-                    passwordr
-                });
-              } else {
-                  const newUser = new User({
-                      name,
-                      uid,
-                      email,
-                      password
-                  });
+    }
 
-                  bcrypt.hash(newUser.password, saltRounds, function (err, hash) {
-                      if (err) throw err;
-                      newUser.password = hash;
-                      newUser
-                          .save()
-                          .then(user => {
-                              req.flash(
-                                  'success_msg',
-                                  'You are now registered and can log in'
-                              );
-                              res.redirect('/users/login');
-                          })
-                          .catch(err => console.log(err));
-                  });
-              }
+    let user = await User.findOne({ email: email });
+    if (user) {
+        errors.push({ msg: 'Email already exists' });
+        res.render('register', {        // respond if already exists
+            errors,
+            name,
+            uid,
+            email,
+            password,
+            passwordr
         });
     }
+
+    let hash = await bcrypt.hash(password, saltRounds);
+    let newUser = new User({name: name, uid: uid, email: email, password: hash});
+    await newUser.save();
+    req.flash('success_msg', 'You are now registered and can log in');
+    res.redirect('/users/login');       // respond if aok
 };
+
 
 exports.login = function (req, res) {
     res.render('login', {
