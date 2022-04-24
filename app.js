@@ -11,7 +11,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 
 //const db = require('./config/keys').mongoURI;
-mongoose.connect('mongodb://localhost/passportOne', {
+mongoose.connect('mongodb://0.0.0.0/passportOne', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true
