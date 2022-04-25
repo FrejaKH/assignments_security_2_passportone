@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "pretest": "npm i",
-    "test1": "setx DEBUG \"passportOne:*\"; setx NODE_ENV \"development\";  node ./bin/www",
+    "test1": "set DEBUG=passportOne:* & set NODE_ENV=development & node ./bin/www",
     "test": "node ./bin/www",
     "nonet": "DEBUG=passportOne:* NODE_ENV=development node ./bin/www"
   },
