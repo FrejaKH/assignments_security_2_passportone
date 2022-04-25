@@ -75,3 +75,8 @@ exports.logout = function (req, res) {
     req.flash('success_msg', 'You are logged out');
     res.redirect('/');
 };
+
+exports.allUsers = async function (que, sort) {
+    const users = await User.find(que, null, sort);
+    return users;
+}

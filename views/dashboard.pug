@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    section.dashboard
+        h1 Welcome to the #{title}
+
+        div.allUsers
+        table
+        each user in allUsers
+            tr
+                th Name:
+                td #{user.name}
+            tr
+                td User ID:
+                td #{user.uid}
+            tr
+                td Email:
+                td #{user.email}
+
+

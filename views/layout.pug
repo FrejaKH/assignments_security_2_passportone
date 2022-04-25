@@ -16,6 +16,8 @@ html
             ul
                 li
                     a(href='/') Home
+                li 
+                    a(href='/about') About
                 if !user
                     li
                         a(href='/users/login') Login
@@ -23,7 +25,7 @@ html
                         a(href='/users/register') Register
                 if user
                     li
-                        a(href="/dashboard") Insiders
+                        a(href="/users/dashboard") Insiders
 
                     li
                         a(href='/users/logout') Logout

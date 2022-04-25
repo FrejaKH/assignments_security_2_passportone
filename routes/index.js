@@ -10,4 +10,12 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.get('/about', function(req,res, next) {
+    let user = req.user ? req.user.uid : null;
+    res.render('about', {
+        title: 'About page',
+        user: user
+    });
+})
+
 module.exports = router;
